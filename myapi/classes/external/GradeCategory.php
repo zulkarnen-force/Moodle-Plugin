@@ -31,10 +31,10 @@ class GradeCategory extends external_api
                     'shortname' => $course->shortname,
                     'category' => $course->category // You can include other course fields as needed
                ],
-               'grade_categories' => []
+               'gradecategories' => []
           ];
           foreach ($categories as $category) {
-               $result['grade_categories'][] = [
+               $result['gradecategories'][] = [
                     'id' => $category->id,
                     'course_id' => $category->course_id,
                     'name' => $category->name
@@ -52,7 +52,7 @@ class GradeCategory extends external_api
                     'shortname' => new external_value(PARAM_TEXT, 'Short course name'),
                     'category' => new external_value(PARAM_INT, 'Category ID')
                ]),
-               'grade_categories' => new external_multiple_structure(
+               'gradecategories' => new external_multiple_structure(
                     new external_single_structure([
                          'id' => new external_value(PARAM_INT, 'Category ID'),
                          'course_id' => new external_value(PARAM_INT, 'Course ID'),

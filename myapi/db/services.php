@@ -42,6 +42,14 @@ $functions = [
           'type' => 'read', // Change to 'write' for write operations
           'capabilities' => 'moodle/site:config' // Optional
      ],
+     'elearning_get_selfenrol_users_in_course' => [
+          'classname' => 'local_myapi\\external\\SelfEnrol',
+          'methodname' => 'get_selfenrol_user_in_course',
+          'classpath' => 'local/myapi/classes/external/SelfEnrol.php',
+          'description' => 'Return a list of self enrol users in a course',
+          'type' => 'read', // Change to 'write' for write operations
+          'capabilities' => 'moodle/site:config' // Optional
+     ],
 ];
 
 $services = [
@@ -67,6 +75,11 @@ $services = [
      ],
      'Grade Report Service' => [
           'functions' => ['elearning_get_course_grades'],
+          'restrictedusers' => 0,
+          'enabled' => 1,
+     ],
+     'Student Self Enrol Service' => [
+          'functions' => ['elearning_get_selfenrol_users_in_course'],
           'restrictedusers' => 0,
           'enabled' => 1,
      ],
