@@ -34,7 +34,7 @@ $functions = [
         "type" => "read", // Change to 'write' for write operations
         "capabilities" => "moodle/site:config", // Optional
     ],
-    "elearning_get_course_grades" => [
+    "uad_get_gradereport" => [
         "classname" => 'local_myapi\\external\\GradeReport',
         "methodname" => "get_course_grades_with_users",
         "classpath" => "local/myapi/classes/external/GradeReport.php",
@@ -42,7 +42,7 @@ $functions = [
         "type" => "read", // Change to 'write' for write operations
         "capabilities" => "moodle/site:config", // Optional
     ],
-    "elearning_get_selfenroll_grades_with_password" => [
+    "uad_get_gradereport_selfenrol" => [
         "classname" => 'local_myapi\\external\\GradeReport',
         "methodname" => "get_selfenroll_grades_with_password",
         "classpath" => "local/myapi/classes/external/GradeReport.php",
@@ -92,7 +92,8 @@ $services = [
     ],
     "Grade Report Service" => [
         "functions" => [
-            "elearning_get_course_grades", "elearning_get_selfenroll_grades_with_password",
+            "uad_get_gradereport",
+            "uad_get_gradereport_selfenrol",
         ],
         "restrictedusers" => 0,
         "enabled" => 1,

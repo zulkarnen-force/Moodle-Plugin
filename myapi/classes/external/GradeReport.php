@@ -76,6 +76,8 @@ class GradeReport extends external_api
                         "idnumber" => $record->useridnumber,
                     ],
                     "gradeitems" => [],
+                    "category_totals" => [],
+                    "course_total" => 0,
                 ];
             }
 
@@ -97,6 +99,25 @@ class GradeReport extends external_api
                 "grade_locked" => $record->grade_locked,
                 "grade_hidden" => $record->grade_hidden,
             ];
+            // Accumulate category total
+            if (
+                !isset(
+                    $result[$record->userid]["category_totals"][
+                        $record->category_id
+                    ]
+                )
+            ) {
+                $result[$record->userid]["category_totals"][
+                    $record->category_id
+                ] = [
+                    "categoryname" => $record->category_name,
+                    "subtotal" => 0,
+                ];
+            }
+            $result[$record->userid]["category_totals"][$record->category_id][
+                "subtotal"
+            ] += $record->final_grade;
+            $result[$record->userid]["course_total"] += $record->final_grade;
         }
         return array_values($result);
     }
@@ -193,6 +214,22 @@ class GradeReport extends external_api
                             VALUE_OPTIONAL
                         ),
                     ])
+                ),
+                "category_totals" => new external_multiple_structure(
+                    new external_single_structure([
+                        "categoryname" => new external_value(
+                            PARAM_TEXT,
+                            "Name of the category"
+                        ),
+                        "subtotal" => new external_value(
+                            PARAM_FLOAT,
+                            "Subtotal of final grades in this category"
+                        ),
+                    ])
+                ),
+                "course_total" => new external_value(
+                    PARAM_FLOAT,
+                    "Total final grade across all categories for the course"
                 ),
             ])
         );
