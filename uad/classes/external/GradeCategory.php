@@ -1,5 +1,5 @@
 <?php
-namespace local_myapi\external;
+namespace uad_api\external;
 
 use external_function_parameters;
 use external_single_structure;

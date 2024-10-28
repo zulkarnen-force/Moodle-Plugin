@@ -1,5 +1,5 @@
 <?php
-namespace local_myapi\external;
+namespace uad_api\external;
 
 use external_function_parameters;
 use external_single_structure;
@@ -57,7 +57,7 @@ class GradeReport extends external_api
                    gg.timemodified AS grade_modified,
                    gg.locked AS grade_locked,
                    gg.hidden AS grade_hidden
-        FROM {grade_items} gi
+        FROM {grade_items} giget_student_grades
         JOIN {grade_grades} gg ON gg.itemid = gi.id
         JOIN {user} u ON u.id = gg.userid
         JOIN {grade_categories} gc ON gc.id = gi.categoryid
