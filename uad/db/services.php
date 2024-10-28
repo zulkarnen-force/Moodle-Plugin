@@ -57,7 +57,7 @@ $functions = [
         "methodname" => "create_selfenrol_user_in_course",
         "classpath" => "local/uad/classes/external/SelfEnrol.php",
         "description" => "Enroll a user in a course by self-enrolment",
-        "type" => "write", // Set to 'write' since this is a write operation
+        "type" => "write",
     ],
 ];
 
