@@ -166,9 +166,9 @@ class SelfEnrol extends external_api
                 "User is already enrolled in this course."
             );
         }
-
+        $studentRoleId = 5; // ID for the "student" role, change if necessary
         $enrol = enrol_get_plugin("self");
-        $enrol->enrol_user($selfenrol, $userid);
+        $enrol->enrol_user($selfenrol, $userid, $studentRoleId);
 
         return [
             "status" => "success",
